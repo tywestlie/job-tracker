@@ -7,6 +7,7 @@ describe "User sees all jobs" do
     company.jobs.create!(title: "QA Analyst", level_of_interest: 70, city: "New York City")
 
     visit company_path(company)
+    save_and_open_page
 
     expect(page).to have_content("ESPN")
     expect(page).to have_content("Developer")
