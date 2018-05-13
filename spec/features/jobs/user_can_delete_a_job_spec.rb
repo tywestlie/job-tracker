@@ -21,8 +21,8 @@ describe 'user deletes a job' do
 
     visit company_job_path(company, job_2)
 
-    expect(page).to_not have_content(job_2.level_of_interest)
-    expect(page).to_not have_content(city_2)
+    expect(page).to have_content(job_2.level_of_interest)
+    expect(page).to have_content(city_2)
 
     click_on 'Delete'
 
