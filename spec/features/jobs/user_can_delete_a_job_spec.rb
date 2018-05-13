@@ -20,7 +20,7 @@ describe 'user deletes a job' do
                                 city: city_2)
 
     visit company_job_path(company, job_2)
-
+    # save_and_open_page
     click_on 'Delete'
 
     expect(current_path).to eq(company_job_path(company, job))
