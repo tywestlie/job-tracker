@@ -41,6 +41,7 @@ group :development, :test do
   gem 'active_designer'
   gem 'capybara', '~> 2.13'
   gem 'rspec-rails'
+  gem 'simplecov'
   gem 'selenium-webdriver'
 end
 

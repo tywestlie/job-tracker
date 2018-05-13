@@ -21,19 +21,28 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id])
+    @company = Company.find(params[:company_id])
+    @job = @company.jobs.find(params[:id])
+    # require 'pry'; binding.pry
   end
 
   def edit
-    # implement on your own!
+    @company = Company.find(params[:company_id])
+    @job = @company.jobs.find(params[:id])
   end
 
   def update
-    # implement on your own!
+    @company = Company.find(params[:company_id])
+    @job = Job.find(params[:id])
+    @job.update(job_params)
+    @job.save
+    redirect_to company_job_path(@company, @job)
   end
 
   def destroy
-    # implement on your own!
+    job = Job.find(params[:id])
+    job.destroy
+    redirect_to company_jobs_path(job.company)
   end
 
   private
