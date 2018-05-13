@@ -38,7 +38,7 @@ class JobsController < ApplicationController
   end
 
   def destroy
-    # implement on your own!
+    
   end
 
   private

@@ -11,7 +11,7 @@ describe 'User updates an existing job' do
     new_job = 'janitor'
     new_city = 'Kathmandu'
     interest_level = 100
-    
+
     fill_in 'job[title]', with: new_job
     fill_in 'job[level_of_interest]', with: interest_level
     fill_in 'job[city]', with: new_city
