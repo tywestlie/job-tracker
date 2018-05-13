@@ -8,15 +8,18 @@ describe 'User updates an existing job' do
 
     click_link 'Edit'
 
-
-    fill_in 'job[title]', with: 'janitor'
-    fill_in 'job[level_of_interest]', with: 100
-    fill_in 'job[city]', with: 'Kathmandu'
+    new_job = 'janitor'
+    new_city = 'Kathmandu'
+    interest_level = 100
+    
+    fill_in 'job[title]', with: new_job
+    fill_in 'job[level_of_interest]', with: interest_level
+    fill_in 'job[city]', with: new_city
     click_on 'Update Job'
 
     expect(current_path).to eq(company_job_path(company, job))
-    expect(page).to have_content('janitor')
-    expect(page).to have_content('Kathmandu')
-    expect(page).to have_content(100)
+    expect(page).to have_content(new_job)
+    expect(page).to have_content(new_city)
+    expect(page).to have_content(interest_level)
   end
 end
