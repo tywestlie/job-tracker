@@ -23,7 +23,7 @@ describe 'user deletes a job' do
     # save_and_open_page
     click_on 'Delete'
 
-    expect(current_path).to eq(company_job_path(company, job))
+    expect(current_path).to eq(company_job_path(company, job_1))
     expect(page).to have_content(title_1)
     expect(page).to have_content(job_1.level_of_interest)
     expect(page).to have_content(city_1)
