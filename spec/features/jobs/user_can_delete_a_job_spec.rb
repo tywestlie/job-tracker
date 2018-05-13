@@ -20,15 +20,14 @@ describe 'user deletes a job' do
                                 city: city_2)
 
     visit company_job_path(company, job_2)
-    # save_and_open_page
-    click_on 'Delete'
 
-    expect(current_path).to eq(company_job_path(company, job_1))
-    expect(page).to have_content(title_1)
-    expect(page).to have_content(job_1.level_of_interest)
-    expect(page).to have_content(city_1)
-    expect(page).to_not have_content(title_2)
     expect(page).to_not have_content(job_2.level_of_interest)
     expect(page).to_not have_content(city_2)
+
+    click_on 'Delete'
+
+    expect(current_path).to eq(company_jobs_path(job_1.company))
+    expect(page).to have_content(title_1)
+    expect(page).to_not have_content(title_2)
   end
 end
