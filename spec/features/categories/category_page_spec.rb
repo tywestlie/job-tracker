@@ -8,51 +8,50 @@ RSpec.describe 'Categories Page' do
   end
 
   context 'they visit /categories' do
-      it 'should display all categories' do
-        visit categories_path
+    it 'should display all categories' do
+      visit categories_path
 
-        expect(page).to have_content(@category_1.title)
-        expect(page).to have_content(@category_2.title)
-      end
+      expect(page).to have_content(@category_1.title)
+      expect(page).to have_content(@category_2.title)
+    end
 
-      xit 'should have a link to create a new category' do
-        visit categories_path
+    xit 'should have a link to create a new category' do
+      visit categories_path
 
-        new_category_link_text = 'add new category'
+      new_category_link_text = 'add new category'
 
-        expect(page).to have_link(new_category_link_text)
-      end
+      expect(page).to have_link(new_category_link_text)
     end
   end
-
-  context '/categories/new' do
-    describe 'user creates a new category' do
-      describe 'they link from the category index' do
-        describe 'they fill in a category title' do
-          it 'creates a new category' do
-            visit categories_path
-
-            click_on "add new category"
-
-            expect(current_path).to eq(new_category_path)
-
-            new_title = "Health"
-
-            fill_in "category[title]", with: new_title
-
-            click_on "save"
-
-            expect(page).to have_content(new_title)
-            expect(page).to have_content(new_body)
-          end
-
-          xit 'should have a cancel button' do
-            visit new_category_path
-
-            cancel_text = 'cancel'
-
-            expect(page).to have_link(cancel_text)
-          end
+end
+  # context '/categories/new' do
+  #   describe 'user creates a new category' do
+  #     describe 'they link from the category index' do
+  #       describe 'they fill in a category title' do
+  #         it 'creates a new category' do
+  #           visit categories_path
+  #
+  #           click_on "add new category"
+  #
+  #           expect(current_path).to eq(new_category_path)
+  #
+  #           new_title = "Health"
+  #
+  #           fill_in "category[title]", with: new_title
+  #
+  #           click_on "save"
+  #
+  #           expect(page).to have_content(new_title)
+  #           expect(page).to have_content(new_body)
+  #         end
+  #
+  #         xit 'should have a cancel button' do
+  #           visit new_category_path
+  #
+  #           cancel_text = 'cancel'
+  #
+  #           expect(page).to have_link(cancel_text)
+  #         end
 
   #         it 'should only allow user to create a unique category' do
   #           visit new_categorys_path
