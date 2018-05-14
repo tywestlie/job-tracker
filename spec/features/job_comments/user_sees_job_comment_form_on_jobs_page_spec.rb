@@ -1,10 +1,11 @@
 require 'rails_helper'
 describe 'user vists job show page' do
-  xit 'can see comment section title' do
+  it 'can see comment section title' do
     company = Company.create!(name: "ESPN")
-    company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver")
+    job = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver")
 
-    visit
-    save_and_open_page
+    visit job_path(job)
+
+    expect(page).to have_content("Comments")
   end
 end
