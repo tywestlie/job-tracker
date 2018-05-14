@@ -23,7 +23,6 @@ class JobsController < ApplicationController
   def show
     @company = Company.find(params[:company_id])
     @job = @company.jobs.find(params[:id])
-    # require 'pry'; binding.pry
   end
 
   def edit
