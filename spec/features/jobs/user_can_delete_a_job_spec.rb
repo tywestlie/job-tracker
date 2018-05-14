@@ -19,7 +19,7 @@ describe 'user deletes a job' do
                                 level_of_interest: interest_level_2,
                                 city: city_2)
 
-    visit company_job_path(company, job_2)
+    visit job_path(job_2)
 
     expect(page).to have_content(job_2.level_of_interest)
     expect(page).to have_content(city_2)

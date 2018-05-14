@@ -14,28 +14,25 @@ class JobsController < ApplicationController
     @job = @company.jobs.new(job_params)
     if @job.save
       flash[:success] = "You created #{@job.title} at #{@company.name}"
-      redirect_to company_job_path(@company, @job)
+      redirect_to job_path(@job)
     else
       render :new
     end
   end
 
   def show
-    @company = Company.find(params[:company_id])
-    @job = @company.jobs.find(params[:id])
+    @job = Job.find(params[:id])
   end
 
   def edit
-    @company = Company.find(params[:company_id])
-    @job = @company.jobs.find(params[:id])
+    @job = Job.find(params[:id])
   end
 
   def update
-    @company = Company.find(params[:company_id])
-    @job = Job.find(params[:id])
-    @job.update(job_params)
-    @job.save
-    redirect_to company_job_path(@company, @job)
+    job = Job.find(params[:id])
+    job.update(job_params)
+    job.save
+    redirect_to job_path(job)
   end
 
   def destroy
