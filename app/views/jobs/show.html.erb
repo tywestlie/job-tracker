@@ -16,3 +16,9 @@ City: <%= @job.city %>
 Company: <%= link_to @job.company.name, company_path(@job.company) %>
 
 <h2>Comments:</h2>
+
+<%= form_for [@job, @comment] do |f| %>
+  <%= f.label :comment %>
+  <%= f.text_area :comment%>
+  <%= f.submit %>
+  <%end%>

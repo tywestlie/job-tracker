@@ -21,7 +21,9 @@ class JobsController < ApplicationController
   end
 
   def show
+    require 'pry'; binding.pry
     @job = Job.find(params[:id])
+    @comment = @job.comments.find(params[:id])
   end
 
   def edit
