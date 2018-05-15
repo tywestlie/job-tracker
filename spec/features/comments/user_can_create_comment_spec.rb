@@ -7,9 +7,9 @@ describe 'user visits jobs show page' do
     comment = 'This job is so great!'
 
     visit job_path(job)
+    save_and_open_page
 
     fill_in :comment_comment, with: comment
-
     expect(page).to have_content(comment)
   end
 end

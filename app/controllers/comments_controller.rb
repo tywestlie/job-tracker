@@ -1,4 +1,4 @@
-class CommentController < ApplicationController
+class CommentsController < ApplicationController
 
   def index
     @job = Job.find(params[:job_id])
@@ -9,7 +9,6 @@ class CommentController < ApplicationController
     @job = Job.find(params[:job_id])
     @comment = @job.comments.create(comment_params)
     redirect_to job_path(@job)
-
   end
 
   private
