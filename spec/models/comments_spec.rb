@@ -14,7 +14,7 @@ describe Comment do
         it 'is valid with comment' do
           company = Company.create!(name: 'ESPN')
           job = company.jobs.create!(title: 'Spokesperson', level_of_interest: 50, city: 'Denver')
-          comment = job.comments.create!(comment: 'This job is so great!')
+          comment = job.comments.create!(content: 'This job is so great!')
           expect(comment).to be_valid
         end
       end
