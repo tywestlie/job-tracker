@@ -8,7 +8,7 @@ describe 'user visits jobs show page' do
 
     visit job_path(job)
 
-    fill_in :comment, with: comment
+    fill_in :comment_comment, with: comment
 
     expect(page).to have_content(comment)
   end
