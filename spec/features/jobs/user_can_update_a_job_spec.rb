@@ -4,7 +4,7 @@ describe 'User updates an existing job' do
   it 'updates a job' do
     company = Company.create!(name: 'ESPN')
     job = company.jobs.create!(title: 'Spokesperson', level_of_interest: 50, city: 'Denver')
-    visit company_job_path(company, job)
+    visit job_path(job)
 
     click_link 'Edit'
 
@@ -17,7 +17,7 @@ describe 'User updates an existing job' do
     fill_in 'job[city]', with: new_city
     click_on 'Update Job'
 
-    expect(current_path).to eq(company_job_path(company, job))
+    expect(current_path).to eq(job_path(job))
     expect(page).to have_content(new_job)
     expect(page).to have_content(new_city)
     expect(page).to have_content(interest_level)
