@@ -8,10 +8,10 @@ RSpec.describe 'Categories Page' do
   end
 
   context 'they visit /categories' do
-    xit 'should display all categories' do
+    it 'should display all categories' do
 
       visit categories_path
-
+# save_and_open_page
       expect(page).to have_content(@category_1.title)
       expect(page).to have_content(@category_2.title)
     end
