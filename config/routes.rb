@@ -4,4 +4,8 @@ Rails.application.routes.draw do
     resources :jobs
   end
 
+  resources :jobs, shallow: true do
+    resources :comments
+  end
+
 end

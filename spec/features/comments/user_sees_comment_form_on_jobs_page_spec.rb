@@ -8,4 +8,5 @@ describe 'user vists job show page' do
 
     expect(page).to have_content("Comments")
   end
+  
 end
