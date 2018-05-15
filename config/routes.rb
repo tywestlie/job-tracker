@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  resources :category
   resources :companies do
     resources :jobs
   end
