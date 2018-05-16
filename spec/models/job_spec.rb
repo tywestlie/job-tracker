@@ -29,10 +29,6 @@ describe Job do
     end
   end
 
-  describe 'relationships' do
-    it {should belong_to(:company)}
-  end
-
   describe 'class methods' do
     it 'can sort jobs by city' do
       category = Category.create!(title: 'Dev')
@@ -55,7 +51,7 @@ describe Job do
 
       denver_count = Job.all.where(city: job2.city).count
       seattle_count = Job.all.where(city: job1.city).count
-      
+
       expect(denver_count).to eq(2)
       expect(seattle_count).to eq(1)
     end
