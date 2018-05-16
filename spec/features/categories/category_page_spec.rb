@@ -117,16 +117,4 @@ RSpec.describe 'Categories Page' do
       end
     end
   end
-
-  context '/categories/show page' do
-    describe 'user clicks on specific category' do
-      it 'they see all jobs for a specific category' do
-        visit categories_path
-
-        click_link(@category_1.title)
-
-        expect(current_path).to eq("/categories/#{@category_1.id}")
-      end
-    end
-  end
 end
