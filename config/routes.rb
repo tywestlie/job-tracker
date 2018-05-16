@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :categories
+  resources :categories, shallow: true do
+    resources :jobs
+  end
 
   resources :companies, shallow: true do
     resources :jobs, shallow: true do

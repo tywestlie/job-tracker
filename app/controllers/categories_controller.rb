@@ -14,9 +14,13 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    @category.save
-    
-    redirect_to categories_path(@categories)
+    if @category.save
+      flash[:success] = "#{@category.title} added!"
+      redirect_to categories_path(@categories)
+    else
+      flash[:error] = "Sorry, that category name already exists!"
+      render :new
+    end
   end
 
   private
