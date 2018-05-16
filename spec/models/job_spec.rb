@@ -32,13 +32,14 @@ describe Job do
   describe 'relationships' do
     it {should belong_to(:company)}
   end
-  
+
   describe 'class methods' do
     it 'can sort jobs by city' do
+      category = Category.create!(title: 'Dev')
       company = Company.create!(name: "ESPN")
-      company.jobs.create!(title: "farmer", level_of_interest: 70, city: "Seattle")
-      job1 = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver")
-      company.jobs.create!(title: "fisherman ", level_of_interest: 70, city: "Denver")
+      company.jobs.create!(title: "farmer", level_of_interest: 70, city: "Seattle", category_id: category.id)
+      job1 = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver", category_id: category.id)
+      company.jobs.create!(title: "fisherman ", level_of_interest: 70, city: "Denver", category_id: category.id)
 
       job_by_city = Job.all.city_select(job1.city)
 
@@ -46,28 +47,17 @@ describe Job do
     end
 
     it 'can count jobs by city' do
+      category = Category.create!(title: 'Dev')
       company = Company.create!(name: "ESPN")
-      job1 = company.jobs.create!(title: "farmer", level_of_interest: 70, city: "Seattle")
-      job2 = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver")
-      company.jobs.create!(title: "fisherman ", level_of_interest: 70, city: "Denver")
+      job1 = company.jobs.create!(title: "farmer", level_of_interest: 70, city: "Seattle", category_id: category.id)
+      job2 = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver", category_id: category.id)
+      company.jobs.create!(title: "fisherman ", level_of_interest: 70, city: "Denver", category_id: category.id)
 
       denver_count = Job.all.where(city: job2.city).count
       seattle_count = Job.all.where(city: job1.city).count
-
+      
       expect(denver_count).to eq(2)
       expect(seattle_count).to eq(1)
-
-  describe 'instance methods' do
-    it 'sorts job comments newest first' do
-      company = Company.create(name: 'Turing')
-
-      category = Category.create!(title: 'Develoer')
-      job = company.jobs.create(title: 'Developer', level_of_interest: 40, city: 'Denver', category_id: category.id)
-      comment1 = job.comments.create(content: 'Woweeeeeeeee!')
-      comment2 = job.comments.create(content: 'NOOOOOOOOO!')
-
-      sorted = job.sort_comments
-      expect(sorted[0].content).to eq(comment2.content)
     end
   end
 end
