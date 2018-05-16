@@ -21,8 +21,9 @@ describe Job do
 
     context 'valid attributes' do
       it 'is valid with a title, level of interest, and company' do
-        company = Company.new(name: 'Turing')
-        job = Job.new(title: 'Developer', level_of_interest: 40, city: 'Denver', company: company)
+        company = Company.create!(name: 'Turing')
+        category = Category.create!(title: 'Develoer')
+        job = company.jobs.create(title: 'Developer', level_of_interest: 40, city: 'Denver', category_id: category.id)
         expect(job).to be_valid
       end
     end
@@ -35,7 +36,9 @@ describe Job do
   describe 'instance methods' do
     it 'sorts job comments newest first' do
       company = Company.create(name: 'Turing')
-      job = Job.create(title: 'Developer', level_of_interest: 40, city: 'Denver', company: company)
+
+      category = Category.create!(title: 'Develoer')
+      job = company.jobs.create(title: 'Developer', level_of_interest: 40, city: 'Denver', category_id: category.id)
       comment1 = job.comments.create(content: 'Woweeeeeeeee!')
       comment2 = job.comments.create(content: 'NOOOOOOOOO!')
 
