@@ -3,6 +3,7 @@ class JobsController < ApplicationController
   def index
     if params[:city]
       @jobs = Job.city_select(params[:city])
+      @city = @jobs.first.city
       render 'jobs/city_index'
     else
       @company = Company.find(params[:company_id])
@@ -11,6 +12,7 @@ class JobsController < ApplicationController
   end
 
   def show
+    @companies = Company.all
     @job = Job.find(params[:id])
     @comment = Comment.new
     @comments = @job.comments.order(created_at: :desc)
