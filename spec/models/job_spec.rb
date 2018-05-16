@@ -43,5 +43,18 @@ describe Job do
 
       expect(job_by_city.count).to eq(2)
     end
+
+    it 'can count jobs by city' do
+      company = Company.create!(name: "ESPN")
+      job1 = company.jobs.create!(title: "farmer", level_of_interest: 70, city: "Seattle")
+      job2 = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver")
+      company.jobs.create!(title: "fisherman ", level_of_interest: 70, city: "Denver")
+
+      denver_count = Job.all.where(city: job2.city).count
+      seattle_count = Job.all.where(city: job1.city).count
+
+      expect(denver_count).to eq(2)
+      expect(seattle_count).to eq(1)
+    end
   end
 end

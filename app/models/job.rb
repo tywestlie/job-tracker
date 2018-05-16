@@ -7,4 +7,8 @@ class Job < ApplicationRecord
     where(city: city)
   end
 
+  def self.city_count
+    select('jobs.city, count(jobs.id) as job_count').group('jobs.city').order('job_count')
+  end
+
 end
