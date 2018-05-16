@@ -14,11 +14,24 @@ describe "User creates a new job" do
     select "Developer"
 
     click_button "Create"
-# save_and_open_page
+
     expect(current_path).to eq("/jobs/#{Job.last.id}")
     expect(page).to have_content("ESPN")
     expect(page).to have_content("Developer")
     expect(page).to have_content("80")
     expect(page).to have_content("Denver")
+  end
+
+  describe 'user can link to create job from index' do
+    it 'clicks link to create job' do
+
+      company = Company.create(name: 'ESPN')
+
+      visit company_jobs_path(company)
+
+      click_on "Create a new job"
+
+      expect(current_path).to eq(new_company_job_path(company))
+    end
   end
 end
