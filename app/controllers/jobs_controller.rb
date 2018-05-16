@@ -8,7 +8,7 @@ class JobsController < ApplicationController
   def show
     @job = Job.find(params[:id])
     @comment = Comment.new
-    @comments = @job.sort_comments
+    @comments = @job.comments.order(created_at: :desc)
   end
 
   def new

@@ -31,16 +31,4 @@ describe Job do
   describe 'relationships' do
     it {should belong_to(:company)}
   end
-
-  describe 'instance methods' do
-    it 'sorts job comments newest first' do
-      company = Company.create(name: 'Turing')
-      job = Job.create(title: 'Developer', level_of_interest: 40, city: 'Denver', company: company)
-      comment1 = job.comments.create(content: 'Woweeeeeeeee!')
-      comment2 = job.comments.create(content: 'NOOOOOOOOO!')
-
-      sorted = job.sort_comments
-      expect(sorted[0].content).to eq(comment2.content)
-    end
-  end
 end
