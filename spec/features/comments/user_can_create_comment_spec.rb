@@ -43,6 +43,5 @@ describe 'user visits jobs show page' do
     within('li:nth-child(2)') do
       expect(page).to have_content(comment1.created_at)
     end
-
   end
 end

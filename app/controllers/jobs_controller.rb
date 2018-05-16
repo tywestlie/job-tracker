@@ -1,14 +1,19 @@
 class JobsController < ApplicationController
 
   def index
-    @company = Company.find(params[:company_id])
-    @jobs = @company.jobs
+    if params[:city]
+      @jobs = Job.city_select(params[:city])
+      render 'jobs/city_index'
+    else
+      @company = Company.find(params[:company_id])
+      @jobs = @company.jobs
+    end
   end
 
   def show
     @job = Job.find(params[:id])
     @comment = Comment.new
-    @comments = @job.sort_comments
+    @comments = @job.comments.order(created_at: :desc)
   end
 
   def new

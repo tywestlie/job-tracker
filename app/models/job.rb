@@ -4,7 +4,12 @@ class Job < ApplicationRecord
   belongs_to :category
   has_many :comments
 
-  def sort_comments
-    comments.order(created_at: :DESC)
+  def self.city_select(city)
+    where(city: city)
   end
+
+  def self.city_count
+    select('jobs.city, count(jobs.id) as job_count').group('jobs.city').order('job_count')
+  end
+
 end
