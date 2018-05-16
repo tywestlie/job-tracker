@@ -31,4 +31,17 @@ describe Job do
   describe 'relationships' do
     it {should belong_to(:company)}
   end
+
+  describe 'class methods' do
+    it 'can sort jobs by city' do
+      company = Company.create!(name: "ESPN")
+      company.jobs.create!(title: "farmer", level_of_interest: 70, city: "Seattle")
+      job1 = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver")
+      company.jobs.create!(title: "fisherman ", level_of_interest: 70, city: "Denver")
+
+      job_by_city = Job.all.city_select(job1.city)
+
+      expect(job_by_city.count).to eq(2)
+    end
+  end
 end
