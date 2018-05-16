@@ -21,8 +21,9 @@ describe Job do
 
     context 'valid attributes' do
       it 'is valid with a title, level of interest, and company' do
-        company = Company.new(name: 'Turing')
-        job = Job.new(title: 'Developer', level_of_interest: 40, city: 'Denver', company: company)
+        company = Company.create!(name: 'Turing')
+        category = Category.create!(title: 'Develoer')
+        job = company.jobs.create(title: 'Developer', level_of_interest: 40, city: 'Denver', category_id: category.id)
         expect(job).to be_valid
       end
     end
@@ -31,7 +32,7 @@ describe Job do
   describe 'relationships' do
     it {should belong_to(:company)}
   end
-
+  
   describe 'class methods' do
     it 'can sort jobs by city' do
       company = Company.create!(name: "ESPN")
@@ -55,6 +56,18 @@ describe Job do
 
       expect(denver_count).to eq(2)
       expect(seattle_count).to eq(1)
+
+  describe 'instance methods' do
+    it 'sorts job comments newest first' do
+      company = Company.create(name: 'Turing')
+
+      category = Category.create!(title: 'Develoer')
+      job = company.jobs.create(title: 'Developer', level_of_interest: 40, city: 'Denver', category_id: category.id)
+      comment1 = job.comments.create(content: 'Woweeeeeeeee!')
+      comment2 = job.comments.create(content: 'NOOOOOOOOO!')
+
+      sorted = job.sort_comments
+      expect(sorted[0].content).to eq(comment2.content)
     end
   end
 end

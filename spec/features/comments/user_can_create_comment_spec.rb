@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'user visits jobs show page' do
   it 'can create a comment' do
     company = Company.create!(name: "ESPN")
-    job = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver")
+    category = Category.create(title: 'Developer')
+    job = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver", category_id: category.id)
     content = 'This job is so great!'
 
     visit job_path(job)
@@ -17,7 +18,8 @@ describe 'user visits jobs show page' do
 
   it 'can see when the comment was created' do
     company = Company.create!(name: "ESPN")
-    job = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver")
+    category = Category.create(title: 'Developer')
+    job = company.jobs.create!(title: "Backend Developer", level_of_interest: 70, city: "Denver", category_id: category.id)
     comment = job.comments.create!(content:'this job is so great')
 
     visit job_path(job)
@@ -27,7 +29,9 @@ describe 'user visits jobs show page' do
 
   it 'can see the newest comment first' do
     company = Company.create!(name: "ESPN")
-    job = company.jobs.create!(title: "Developer", level_of_interest: 70, city: "Denver")
+    category = Category.create(title: 'Developer')
+    job = company.jobs.create!(title: "Backend Developer", level_of_interest: 70, city: "Denver", category_id: category.id)
+    visit job_path(job)
     comment1 = job.comments.create!(content:'this job is so great')
     comment2 = job.comments.create!(content:'this job is so great')
 

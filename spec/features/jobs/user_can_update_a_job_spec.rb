@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'User updates an existing job' do
   it 'updates a job' do
     company = Company.create!(name: 'ESPN')
-    job = company.jobs.create!(title: 'Spokesperson', level_of_interest: 50, city: 'Denver')
+    category = Category.create(title: 'Developer')
+    job = company.jobs.create!(title: "Backend Developer", level_of_interest: 70, city: "Denver", category_id: category.id)
     visit job_path(job)
 
     click_link 'Edit'
