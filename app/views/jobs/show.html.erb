@@ -7,8 +7,8 @@ Description: <%= @job.description %>
 Level of Interest: <%= @job.level_of_interest %>
 <br>
 
-City: <%= @job.city %>
-<br>
+City: <%= link_to "#{@job.city}", "/companies/#{@job.company.id}/jobs?city=#{@job.city}" %>
+
 
 <%= link_to 'Edit', edit_job_path %>
 <%= link_to 'Delete', job_path(@job), method: :delete %>
