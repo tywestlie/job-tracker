@@ -12,12 +12,18 @@ describe 'user deletes a job' do
     city_2 = 'Portland'
     interest_level_2 = 2
 
+
+    category = Category.create(title: 'Developer')
+
     job_1 = company.jobs.create!(title: title_1,
                                 level_of_interest: interest_level_1,
-                                city: city_1)
+                                city: city_1,
+                                category_id: category.id)
     job_2 = company.jobs.create!(title: title_2,
                                 level_of_interest: interest_level_2,
-                                city: city_2)
+                                city: city_2,
+                                category_id: category.id)
+
 
     visit job_path(job_2)
 

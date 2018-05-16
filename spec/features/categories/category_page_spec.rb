@@ -17,6 +17,34 @@ RSpec.describe 'Categories Page' do
       # save_and_open_page
     end
 
+    it 'they should see the number of jobs for that category' do
+      company = Company.new(name: 'ESPN')
+
+      Job.create!(title: 'Rodeo Clown',
+                  level_of_interest: 87,
+                  city: 'Denver',
+                  category: @category_1,
+                  company: company)
+
+
+      Job.create!(title: 'Frontend Developer',
+                  level_of_interest: 2,
+                  city: 'Seattle',
+                  category: @category_1,
+                  company: company)
+
+      Job.create!(title: 'Backend Developer',
+                  level_of_interest: 100,
+                  city: 'Portland',
+                  category: @category_2,
+                  company: company)
+                  
+      visit categories_path
+
+      expect(page).to have_content("#{@category_1.jobs.count} jobs")
+      expect(page).to have_content("#{@category_2.jobs.count} jobs")
+    end
+
     it 'should have a link to create a new category' do
       visit categories_path
 
@@ -72,6 +100,7 @@ RSpec.describe 'Categories Page' do
       end
     end
   end
+
   context '/categories/show page' do
     describe 'user clicks on an amount of jobs link on categories page' do
       it 'they see all jobs for a specific company' do
@@ -81,28 +110,16 @@ RSpec.describe 'Categories Page' do
 
         expect(current_path).to eq("/categories/#{@category_1.id}")
       end
+      it 'should allow user to create a unique category title' do
+        visit categories_path
+
+        click_link(@category_1.title)
+
+        expect(page).to have_content(@category_1.title)
+      end
     end
   end
 end
-  #     it 'they should see the information for that category' do
-  #       visit categories_path
-  #
-  #       click_link(@category_1.title)
-  #
-  #       expect(page).to have_content(@category_1.title)
-  #       expect(page).to have_content(@category_1.body)
-  #       expect(page).to_not have_content(@category_2.body)
-  #       expect(page).to_not have_content(@category_2.body)
-  #     end
-  #     it 'should allow user to create a unique category title' do
-  #       visit categories_path
-  #
-  #       click_link(@category_1.title)
-  #
-  #       expect(page).to have_content(@category_1.title)
-  #     end
-  #   end
-  # end
   #
   #
   # context '/categories/:id/edit' do
