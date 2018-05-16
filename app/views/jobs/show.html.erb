@@ -23,6 +23,11 @@ Company: <%= link_to @job.company.name, company_path(@job.company) %>
 <% end %>
 
 <h2>Comments</h2>
-<% @comments.each do |comment| %>
-  <h3><%= comment.content %></h3>
-<%end%>
+<ul>
+  <% @comments.each do |comment| %>
+  <li>
+    <%= comment.created_at %>
+    <%= comment.content %>
+  </li>
+  <%end%>
+</ul>

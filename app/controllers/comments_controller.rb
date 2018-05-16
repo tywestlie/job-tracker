@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
   def create
     @job = Job.find(params[:job_id])
     @comment = @job.comments.create(comment_params)
-    # require 'pry'; binding.pry
     redirect_to job_path(@job)
   end
 
