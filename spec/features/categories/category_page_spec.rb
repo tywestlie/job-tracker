@@ -36,60 +36,54 @@ RSpec.describe 'Categories Page' do
       expect(current_path).to eq(new_category_path)
     end
   end
-end
 
-context '/categories/new' do
-  describe 'user creates a new category' do
-    describe 'they link from the category index' do
-      describe 'they fill in a category title' do
-        it 'creates a new category' do
-          visit categories_path
+  context '/categories/new' do
+    describe 'user creates a new category' do
+      describe 'they link from the category index' do
+        describe 'they fill in a category title' do
+          it 'creates a new category' do
+            visit categories_path
 
-          click_on "add new category"
+            click_on "add new category"
 
-          expect(current_path).to eq(new_category_path)
+            expect(current_path).to eq(new_category_path)
 
-          new_title = "Health"
+            new_title = "Health"
 
-          fill_in :category_title, with: new_title
+            fill_in :category_title, with: new_title
 
-          click_on "Create Category"
-# save_and_open_page
-          expect(current_path).to eq(categories_path)
-          expect(page).to have_content(new_title)
-        end
+            click_on "Create Category"
+            expect(current_path).to eq(categories_path)
+            expect(page).to have_content(new_title)
+          end
 
-        it 'should have a cancel button' do
-          visit new_category_path
+          it 'should have a cancel button' do
+            visit new_category_path
 
-          cancel_text = 'cancel'
+            cancel_text = 'cancel'
 
-          expect(page).to have_link(cancel_text)
+            expect(page).to have_link(cancel_text)
+
+            click_on cancel_text
+
+            expect(current_path).to eq(categories_path)
+          end
         end
       end
     end
   end
-end
+  context '/categories/show page' do
+    describe 'user clicks on an amount of jobs link on categories page' do
+      it 'they see all jobs for a specific company' do
+        visit categories_path
 
-  #         it 'should only allow user to create a unique category' do
-  #           visit new_categorys_path
-  #
-  #           fill_in 'Name:' with: 'Education'
-  #
-  #           expect
-  #         end
-  #
-  #
-  # context '/categories/show page' do
-  #   describe 'user clicks on an amount of jobs link on categories page' do
-  #     it 'they see all jobs for a specific company' do
-  #       visit categories_path
-  #
-  #       click_link(@category_1.title)
-  #
-  #       expect(current_path).to eq("/categories/#{@category_1.id}")
-  #     end
-  #
+        click_link(@category_1.title)
+
+        expect(current_path).to eq("/categories/#{@category_1.id}")
+      end
+    end
+  end
+end
   #     it 'they should see the information for that category' do
   #       visit categories_path
   #
