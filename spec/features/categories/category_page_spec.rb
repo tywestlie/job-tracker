@@ -14,7 +14,6 @@ RSpec.describe 'Categories Page' do
 
       expect(page).to have_content(@category_1.title)
       expect(page).to have_content(@category_2.title)
-      # save_and_open_page
     end
 
     it 'they should see the number of jobs for that category' do

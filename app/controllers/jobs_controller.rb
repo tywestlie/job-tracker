@@ -42,7 +42,6 @@ class JobsController < ApplicationController
   def update
     job = Job.find(params[:id])
     job.update(job_params)
-    job.save
     redirect_to job_path(job)
   end
 

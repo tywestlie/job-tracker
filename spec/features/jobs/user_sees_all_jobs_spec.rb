@@ -25,7 +25,6 @@ describe "User sees all jobs" do
 
     click_on "#{job.title}"
 
-
-    expect(current_path).to eq("/jobs/#{job.id}")
+    expect(current_path).to eq(job_path(job))
   end
 end
